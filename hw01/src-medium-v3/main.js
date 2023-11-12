@@ -25,29 +25,36 @@ function AppleIconRow() {
 }
 
 function ReadCSV(table, header) {
-  d3.csv("../score.csv", function (data) {
-    let mapData = [null].concat(data);
+  d3.text("../score.csv", function (csvString) {
+    console.log(csvString);
 
-    let rows = table.selectAll("tr").data(mapData).enter().append("tr");
+    // // Parse the CSV string into an array of objects
+    // let data = d3.csvParse(csvString);
 
-    let cols = rows
-      .selectAll("td")
-      .data(function (container) {
-        return header.map(function (key) {
-          console.log(key, container[key]);
-          if (key.includes("作業")) {
-            let img = `<img src="../images/${container[key]}.svg" width="40"/>`;
-            return { key: key, value: img };
-          } else {
-            return { key: key, value: container[key] };
-          }
-        });
-      })
-      .enter()
-      .append("td")
-      .html(function (d) {
-        return d.value;
-      });
+    // // If you want to log the parsed data to the console:
+    // console.log(data);
+
+    // // Append data to the table
+    // let rows = table.selectAll("tr").data(data).enter().append("tr");
+
+    // let cols = rows
+    //   .selectAll("td")
+    //   .data(function (container) {
+    //     return header.map(function (key) {
+    //       console.log(key, container[key]);
+    //       if (key.includes("作業")) {
+    //         let img = `<img src="../images/${container[key]}.svg" width="40"/>`;
+    //         return { key: key, value: img };
+    //       } else {
+    //         return { key: key, value: container[key] };
+    //       }
+    //     });
+    //   })
+    //   .enter()
+    //   .append("td")
+    //   .html(function (d) {
+    //     return d.value;
+    //   });
   });
 }
 

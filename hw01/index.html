@@ -178,14 +178,51 @@
   <!-- ------------------------------------------------>
   <div class="row hw12">
     <div class="col-md-12 twenty">
-      該次作業程式碼，請放在 https://github.com/<span style="color:red;">你的帳號</span>/vis2023f/hw<span style="color:red;">01</span>/src/ 檔案夾。
+      Simple Baseline (隨機產生120人CSV成績表)程式碼，請放在 https://github.com/<span style="color:red;">你的帳號</span>/vis2023f/hw<span style="color:red;">01</span>/table2csv/<br>
+      <hr>
+      Simple Baseline (繪製 v3 蘋果成績表)程式碼，請放在 https://github.com/<span style="color:red;">你的帳號</span>/vis2023f/hw<span style="color:red;">01</span>/src-easy/<br>
+      <hr>
+      Medium Baseline (繪製 v7 蘋果成績表)程式碼，請放在 https://github.com/<span style="color:red;">你的帳號</span>/vis2023f/hw<span style="color:red;">01</span>/src-medium/<br>
+      <hr>
+      Strong Baseline (參考<a href="https://observablehq.com/@d3/gallery?utm_source=d3js-org&utm_medium=nav&utm_campaign=try-observable">D3畫廊</a>，繪製嶄新的成績表)程式碼，請放在 https://github.com/<span style="color:red;">你的帳號</span>/vis2023f/hw<span style="color:red;">01</span>/src-strong/<br>
     </div>
   </div>
 
   <!-- ------------------------------------------------>
   <div class="row hw12">
     <div class="col-md-12 twenty">
-      心得報告 105 字。心得報告 105 字。心得報告 105 字。心得報告 105 字。心得報告 105 字。心得報告 105 字。心得報告 105 字。心得報告 105 字。心得報告 105 字。心得報告 105 字。心得報告 105 字。心得報告 105 字。心得報告 105 字。心得報告 105 字。心得報告 105 字。
+      <h4>前往你的 Demo 網頁</h4>
+    </div>
+  </div>
+
+  <!-- ------------------------------------------------>
+  <div class="row hw12">
+    <div class="col-md-12 twenty">
+      <a href="https://a0935210570602.github.io/vis2023f/hw01/table2csv">https://a0935210570602.github.io/vis2023f/hw01/table2csv/index.html</a>
+      <hr>
+      <a href="https://a0935210570602.github.io/vis2023f/hw01/src-easy">https://a0935210570602.github.io/vis2023f/hw01/src-easy/index.html</a>
+      <hr>
+      <a href="https://a0935210570602.github.io/vis2023f/hw01/src-medium">https://a0935210570602.github.io/vis2023f/hw01/src-medium/index.html</a>
+      <hr>
+      <a href="https://a0935210570602.github.io/vis2023f/hw01/src-strong">https://a0935210570602.github.io/vis2023f/hw01/src-strong/index.html</a>
+    </div>
+  </div>
+
+  <!-- ------------------------------------------------>
+  <div class="row hw12">
+    <div class="col-md-12 twenty">
+      <h3>心得報告(100字)</h3>
+    </div>
+  </div>
+
+  <!-- ------------------------------------------------>
+  <div class="row hw12">
+    <div class="col-md-12 twenty">
+      這次作業讓我了解到 D3 的基本操作，也讓我對 D3 有了初步的認識，雖然目前只嘗試過幾個呈現的方式，但在做 Strong 時也讓我認識更多的呈現作法，這對我之後的論文可能會有幫助，不過不知道為什麼助教要出 v3 以及 v7 的差別，是要讓我們知道版本差別函數會改變嗎？如果是的話那還真是謝了，因為我在這邊搞了兩個多小時...才解決的，看來我還很嫩呢。
+      <br>
+      在 D3 畫廊方面蠻多新奇的方式，但我想不到有哪些能夠套用到成績上，看來我的想像力還不夠豐富，所以我才以簡單的呈現方式來完成！
+      <br>
+      提醒助教：原本 strong baseline 把它 checked 後無法加分，這點基本上就是後面的程式碼忘了加而已，加了就 OK 了。除了這個外，範例的學生學號沒有出現，在 container 的 html 加入 else if (i == 2) return d; 即可，並把 filiter 改成 i >= 3。
     </div>
   </div>
 
@@ -200,33 +237,94 @@
           <th>分項描述</th>
         </tr>
         <tr>
-          <td rowspan="7" id="myTotal"></td>
-          <td><input type="checkbox" class="flipswitch" id="myCheckbox1"></td>
+          <td rowspan="4" id="myTotal"></td>
+          <td><input type="checkbox" class="flipswitch" id="myCheckbox1" checked></td>
           <td id='m1'>2</td>
-          <td>Simple baseline - 描述、描述、描述</td>
+          <td>Simple baseline - 隨機產生120人CSV成績表</td>
         </tr>
         <tr>
           <td><input type="checkbox" class="flipswitch" id="myCheckbox2" checked></td>
-          <td id='m2'>6</td>
-          <td>Medium baseline - 描述、描述、描述 </td>
+          <td id='m2'>2</td>
+          <td>Simple baseline - 繪製 v3 蘋果成績表</td>
         </tr>
         <tr>
-          <td><input type="checkbox" class="flipswitch" id="myCheckbox3"></td>
+          <td><input type="checkbox" class="flipswitch" id="myCheckbox3" checked></td>
           <td id='m3'>2</td>
-          <td>Strong baseline - 描述、描述、描述 </td>
+          <td>Medium baseline - 繪製 v7 蘋果成績表</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" class="flipswitch" id="myCheckbox4" checked></td>
+          <td id='m4'>4</td>
+          <td>Strong baseline - 參考<a href="https://observablehq.com/@d3/gallery?utm_source=d3js-org&utm_medium=nav&utm_campaign=try-observable">D3畫廊</a>，繪製嶄新的成績表</td>
         </tr>
       </table>
+    </div>
+  </div>
+
+
+  <!-- ------------------------------------------------>
+  <div class="row hw12">
+    <div class="col-md-12 twenty">
+      <h4>Simple baseline - 隨機產生120人CSV成績表</h4>
     </div>
   </div>
 
   <!-- ------------------------------------------------>
   <div class="row hw12">
     <div class="col-md-12 twenty">
+      <iframe width="100%" height="500" frameborder="0" style="background-color: #FFFFFF" src="./table2csv/index.html"></iframe>
+      <!--
       <video id="video1" style="width:100%;max-width:100%;" controls="">
         <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
       </video>
+      -->
     </div>
   </div>
+
+  <!-- ------------------------------------------------>
+  <div class="row hw12">
+    <div class="col-md-12 twenty">
+      <h4>Simple baseline - 繪製 v3 蘋果成績表</h4>
+    </div>
+  </div>
+
+  <!-- ------------------------------------------------>
+  <div class="row hw12">
+    <div class="col-md-12 twenty">
+      <iframe width="100%" height="500" frameborder="0" style="background-color: #FFFFFF" src="./src-easy/index.html"></iframe>
+    </div>
+  </div>
+
+
+  <!-- ------------------------------------------------>
+  <div class="row hw12">
+    <div class="col-md-12 twenty">
+      <h4>Medium baseline - 繪製 v7 蘋果成績表</h4>
+    </div>
+  </div>
+
+  <!-- ------------------------------------------------>
+  <div class="row hw12">
+    <div class="col-md-12 twenty">
+      <iframe width="100%" height="500" frameborder="0" style="background-color: #FFFFFF" src="./src-medium/index.html"></iframe>
+    </div>
+  </div>
+
+
+  <!-- ------------------------------------------------>
+  <div class="row hw12">
+    <div class="col-md-12 twenty">
+      <h4>Strong baseline - 參考<a href="https://observablehq.com/@d3/gallery?utm_source=d3js-org&utm_medium=nav&utm_campaign=try-observable">D3畫廊</a>，繪製嶄新的成績表</h4>
+    </div>
+  </div>
+
+  <!-- ------------------------------------------------>
+  <div class="row hw12">
+    <div class="col-md-12 twenty">
+      <iframe width="100%" height="500" frameborder="0" style="background-color: #FFFFFF" src="./src-strong/index.html"></iframe>
+    </div>
+  </div>
+
 
   <!-- ------------------------------------------------>
 
@@ -245,9 +343,6 @@
   d3.select("#myCheckbox2").on("change",update);
   d3.select("#myCheckbox3").on("change",update);
   d3.select("#myCheckbox4").on("change",update);
-  d3.select("#myCheckbox5").on("change",update);
-  d3.select("#myCheckbox6").on("change",update);
-  d3.select("#myCheckbox7").on("change",update);
 
   update();
   
@@ -265,6 +360,10 @@
 
     if (d3.select("#myCheckbox3").property("checked")){
       score += parseInt(d3.select('#m3').html());   
+    }
+
+    if (d3.select("#myCheckbox4").property("checked")){
+      score += parseInt(d3.select('#m4').html());   
     }
 
     d3.select("#myTotal").html(score);    

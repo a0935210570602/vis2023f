@@ -155,7 +155,7 @@ function GenerateAccount() {
 function DownloadCSVFile() {
   // Create CSV file object and feed our
   // csv_data into it
-  CSVFile = new Blob([tableData], { type: "text/csv" });
+  CSVFile = new Blob([tableData], { type: "text/csv;charset=utf-8" });
 
   // Create to temporary link to initiate
   // download process
