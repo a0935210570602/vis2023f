@@ -2,18 +2,21 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>d3.js v7 score table</title>
-    <link href="../style.css" rel="stylesheet" />
+    <title>generate csv by js</title>
+    <link rel="stylesheet" href="../style.css" />
     <script src="main.js"></script>
-    <script src="https://d3js.org/d3.v7.min.js"></script>
   </head>
   <body>
     <div class="center">
-      <div id="apple"></div>
+      <button onclick="DownloadCSVFile()">Download .csv</button>
     </div>
     <br />
     <div class="center">
       <div id="score_table"></div>
     </div>
+
+    <script>
+      CreateTable();
+    </script>
   </body>
 </html>
