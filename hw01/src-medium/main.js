@@ -29,7 +29,7 @@ function ReadCSV(table, header) {
     console.log(csvString);
 
     // Parse the CSV string into an array of objects
-    let data = d3.csvParse(csvString);
+    let data = d3.csv.parse(csvString);
 
     // If you want to log the parsed data to the console:
     console.log(data);
