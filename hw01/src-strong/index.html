@@ -53,8 +53,8 @@
       console.log(studentData); // 输出整理后的数据结构
 
       // Your chart code goes here...
-      const width = 928;
-      const height = 1200;
+      const width = 2200;
+      const height = 3000;
       
       const color = d3.scaleOrdinal(d3.quantize(d3.interpolateRainbow, studentData.length + 1));
       
@@ -102,7 +102,7 @@
       
       const format = d3.format(",d");
       const tspan = text.append("tspan")
-          .attr("fill-opacity", d => labelVisible(d) * 0.7)
+          .attr("fill-opacity", d => labelVisible(d) * 2)
           .text(d => ` ${format(d.value)}`);
       
       cell.append("title")
