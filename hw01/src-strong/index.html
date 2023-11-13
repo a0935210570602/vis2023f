@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Partition Chart with CSV Data</title>
+  <!-- Include D3.js library -->
+  <script src="https://d3js.org/d3.v7.js"></script>
+</head>
+<body>
+  <!-- Container for the chart -->
+  <div id="chart-container"></div>
+
+  <!-- Script section for your chart code -->
+  <script>
+    // Load data from CSV
+    d3.csv("../score.csv").then(function(originalData) {
+      const studentData = [];
+      originalData.forEach(entry => {
+          // 查找是否已经存在该班级
+          existingClassIndex = studentData.findIndex(item => item.name === entry["班級"]);
+
+          if (existingClassIndex === -1) {
+              // 如果不存在，添加新的班级
+              studentData.push({ "name": entry["班級"], "children": [] });
+          }
+          console.log(studentData);
+          existingClassIndex = studentData.findIndex(item => item.name === entry["班級"]);
+
+          // 构建作业分数的数据
+          const score = {
+              name: entry["姓名"],
+              children: [
+                  { name: "作業一", value: parseInt(entry["作業一"]) },
+                  { name: "作業二", value: parseInt(entry["作業二"]) },
+                  { name: "作業三", value: parseInt(entry["作業三"]) },
+                  { name: "作業四", value: parseInt(entry["作業四"]) },
+                  { name: "作業五", value: parseInt(entry["作業五"]) },
+                  { name: "作業六", value: parseInt(entry["作業六"]) },
+                  { name: "作業七", value: parseInt(entry["作業七"]) },
+                  { name: "作業八", value: parseInt(entry["作業八"]) },
+                  { name: "作業九", value: parseInt(entry["作業九"]) },
+                  { name: "作業十", value: parseInt(entry["作業十"]) },
+              ]
+          };
+
+          // 将作业分数数据添加到对应班级的 children 数组中
+          studentData[existingClassIndex]["children"].push(score);
+      });
+
+      data = {name: "資料可視化", children: studentData}
+      console.log(data); // 输出整理后的数据结构
+      console.log(studentData); // 输出整理后的数据结构
+
+      // Your chart code goes here...
+      const width = 928;
+      const height = 1200;
+      
+      const color = d3.scaleOrdinal(d3.quantize(d3.interpolateRainbow, studentData.length + 1));
+      
+      const hierarchy = d3.hierarchy({children: studentData})
+          .sum(d => +d.value)
+          .sort((a, b) => b.height - a.height || b.value - a.value);
+      
+      const root = d3.partition()
+          .size([height, (hierarchy.height + 1) * width / 3])
+          (hierarchy);
+      
+      const svg = d3.create("svg")
+          .attr("viewBox", [0, 0, width, height])
+          .attr("width", width)
+          .attr("height", height)
+          .attr("style", "max-width: 100%; height: auto; font: 10px sans-serif;");
+      
+      const cell = svg
+        .selectAll("g")
+        .data(root.descendants())
+        .join("g")
+          .attr("transform", d => `translate(${d.y0},${d.x0})`);
+      
+      const rect = cell.append("rect")
+          .attr("width", d => d.y1 - d.y0 - 1)
+          .attr("height", d => rectHeight(d))
+          .attr("fill-opacity", 0.6)
+          .attr("fill", d => {
+            if (!d.depth) return "#ccc";
+            while (d.depth > 1) d = d.parent;
+            return color(d.data.name);
+          })
+          .style("cursor", "pointer")
+          .on("click", clicked);
+      
+      const text = cell.append("text")
+          .style("user-select", "none")
+          .attr("pointer-events", "none")
+          .attr("x", 4)
+          .attr("y", 13)
+          .attr("fill-opacity", d => +labelVisible(d));
+      
+      text.append("tspan")
+          .text(d => d.data.name);
+      
+      const format = d3.format(",d");
+      const tspan = text.append("tspan")
+          .attr("fill-opacity", d => labelVisible(d) * 0.7)
+          .text(d => ` ${format(d.value)}`);
+      
+      cell.append("title")
+          .text(d => `${d.ancestors().map(d => d.data.name).reverse().join("/")}\n${format(d.value)}`);
+      
+      let focus = root;
+      function clicked(event, p) {
+        focus = focus === p ? p = p.parent : p;
+      
+        root.each(d => d.target = {
+          x0: (d.x0 - p.x0) / (p.x1 - p.x0) * height,
+          x1: (d.x1 - p.x0) / (p.x1 - p.x0) * height,
+          y0: d.y0 - p.y0,
+          y1: d.y1 - p.y0
+        });
+      
+        const t = cell.transition().duration(750)
+            .attr("transform", d => `translate(${d.target.y0},${d.target.x0})`);
+      
+        rect.transition(t).attr("height", d => rectHeight(d.target));
+        text.transition(t).attr("fill-opacity", d => +labelVisible(d.target));
+        tspan.transition(t).attr("fill-opacity", d => labelVisible(d.target) * 0.7);
+      }
+      
+      function rectHeight(d) {
+        return d.x1 - d.x0 - Math.min(1, (d.x1 - d.x0) / 2);
+      }
+      
+      function labelVisible(d) {
+        return d.y1 <= width && d.y0 >= 0 && d.x1 - d.x0 > 16;
+      }
+
+      // Append the chart to the container
+      const chartContainer = document.getElementById('chart-container');
+      chartContainer.appendChild(svg.node());
+    });
+  </script>
+</body>
+</html>
