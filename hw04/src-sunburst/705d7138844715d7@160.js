@@ -2,6 +2,10 @@ function _1(md){return(
 md`# HW04`
 )}
 
+function _2(md){return(
+  md`Ref : https://observablehq.com/d/c84affd948a1e733`
+)}
+
 function _artist(FileAttachment){return(
 FileAttachment("artist@1.csv").csv()
 )}
@@ -507,6 +511,7 @@ export default function define(runtime, observer) {
   ]);
   main.builtin("FileAttachment", runtime.fileAttachments(name => fileAttachments.get(name)));
   main.variable(observer()).define(["md"], _1);
+  main.variable(observer()).define(["md"], _2);
   main.variable(observer("artist")).define("artist", ["FileAttachment"], _artist);
   main.variable(observer()).define(["__query","artist","invalidation"], _3);
   main.variable(observer("innerCircleQuestion")).define("innerCircleQuestion", ["artist"], _innerCircleQuestion);
